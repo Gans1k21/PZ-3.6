@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff; /* Білий фон за замовчуванням */
+            color: #a020f0; /* Чорний текст за замовчуванням */
+        }
+
+        button {
+            padding: 10px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .dark-mode {
+            background-color: #0000ff;
+            color: #fff;
+        }
+    </style>
+    <title>Your Website</title>
+</head>
+<body>
+    <div class="container">
+        <h1 id="main-heading" data-lang="uk">I-S Company!</h1>
+        <p id="main-text" data-lang="uk">Це приклад тексту на вашому веб-сайті.</p>
+        <button onclick="changeTheme()">Змінити тему</button>
+
+        <hr>
+
+        <h2>Завдання 1: Робота з подіями миші</h2>
+        <button id="myButton" onclick="mouseButtonClick()">"Натисніть на мене"</button>
+
+        <h2>Завдання 2: Обробка подій клавіатури</h2>
+        <input type="text" id="myInput" onkeydown="keyPress(event)" placeholder="Введіть текст">
+
+        <h2>Завдання 3: Робота з фокусом</h2>
+        <input type="text" id="focusInput" onfocus="focusEvent()" onblur="blurEvent()" placeholder="Елемент для фокусу">
+
+        <h2>Завдання 4: Робота з об'єктом document</h2>
+        <p>Будь-який текстовий вміст.</p>
+
+        <h2>Завдання 5: Використання addEventListener</h2>
+        <button id="eventButton">Викликати подію</button>
+    </div>
+
+    <script>
+        let isDarkMode = false;
+
+        function changeTheme() {
+            const body = document.body;
+            const container = document.querySelector('.container');
+            const textElements = document.querySelectorAll('[data-lang]');
+
+            isDarkMode = !isDarkMode;
+
+            if (isDarkMode) {
+                body.classList.add('dark-mode');
+                container.classList.add('dark-mode');
+                textElements.forEach(element => element.style.color = '#fff'); // Зміна кольору тексту
+            } else {
+                body.classList.remove('dark-mode');
+                container.classList.remove('dark-mode');
+                textElements.forEach(element => element.style.color = '#000'); // Зміна кольору тексту
+            }
+        }
+
+        function mouseButtonClick() {
+            alert("Кнопка була натиснута!");
+        }
+
+        function keyPress(event) {
+            console.log("Клавіша була натиснута! Код клавіші: " + event.keyCode);
+        }
+
+        function focusEvent() {
+            console.log("Елемент отримав фокус!");
+        }
+
+        function blurEvent() {
+            console.log("Елемент втратив фокус");
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("Документ повністю завантажено!");
+        });
+
+        const eventButton = document.getElementById('eventButton');
+        eventButton.addEventListener('click', function () {
+            console.log("Подія виникла!");
+        });
+
+        eventButton.addEventListener('click', function () {
+            console.log("Це один обробник події!");
+        });
+    </script>
+</body>
+</html>
